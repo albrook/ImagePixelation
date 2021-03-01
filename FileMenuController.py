@@ -22,3 +22,8 @@ def openImage(colour):
     else:
         print("The option you selected is not currently supported")
 
+def saveImage(image):
+    filetypes = [('JPEG', ('*.jpg', '*.jpeg')), ('PNG', '*.png')]
+    name = filedialog.asksaveasfilename(title="Select file", filetypes=filetypes, defaultextension=filetypes)
+    importExportImages.exportImage(name, image)
+

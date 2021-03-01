@@ -39,8 +39,8 @@ class GUI(tk.Tk):
         openMenu.add_command(label="Grayscale", command=lambda: self.invokeFileController(FileMenu.OPEN, IC.ImageColour.GRAYSCALE))
         filemenu.add_cascade(label="Open", menu=openMenu)
 
-        filemenu.add_command(label="Save", command=lambda:self.invokeFileController(FileMenu.SAVE))
-        filemenu.add_command(label="Close", command=lambda:self.invokeFileController(FileMenu.CLOSE))
+        filemenu.add_command(label="Save", command=lambda:self.invokeFileController(FileMenu.SAVE, None))
+        filemenu.add_command(label="Close", command=lambda:self.invokeFileController(FileMenu.CLOSE, None))
         self.menu.add_cascade(label="File", menu=filemenu)
 
         #Algorithm Menu
@@ -58,7 +58,7 @@ class GUI(tk.Tk):
             self.imageArray, self.filename = FMC.openImage(subOption)
             self.updateCanvas()
         elif option == FileMenu.SAVE:
-            pass
+            FMC.saveImage(self.imageArray)
         elif option == FileMenu.CLOSE:
             tk.Tk.destroy(self)
         else:

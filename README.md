@@ -1,6 +1,19 @@
 # ImagePixelation
-An adaptation from one of my summer internships. Looks into developing an algorithm that pixelizes an image with help from the OpenCV library
+An adaptation from my summer internship at the Rose Health Centre. \
+While this repository uses similar libraries, it has a different focus.
 
-IDEA: Pycharm
-Language: Python3
+**Project Setup**
+- IDEA: Pycharm
+- Language: Python v3.6
+
+**Packages Required**
+- Pillow
+- opencv-python
+- tkinter 
+- numpy
+
+
+
+
+
 
