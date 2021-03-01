@@ -2,14 +2,17 @@ import cv2 as cv
 from tkinter import filedialog
 
 class ImportExport():
-
-    def __init__(self):
-        pass
+    """
+    This class holds methods related to the importing (opening) and exporting (saving) of images.
+    Options for opening include opening the image as it is, in colour (RGB) format, and in grayscale.
+    There is only one option for saving, as is.
+    """
 
     def importUnchangedImage(self, filename):
         """
-
-        :return: None
+        Given a string filename, attempts to open the file provided. If it fails, feedback is through the command line.
+        :param: filename {String}: The name of the file to be opened
+        :return: image {numpyArray}: Either a numpy array of the image, or None due to the image failing to load.
         """
         image = None
         try:
@@ -21,8 +24,9 @@ class ImportExport():
 
     def importColourImage(self, filename):
         """
-
-        :return: None
+        Given a string filename, attempts to open the file provided in RGB colour. If it fails, feedback is through the command line.
+        :param: filename {String}: The name of the file to be opened
+        :return: image {numpyArray}: Either a numpy array of the image, or None due to the image failing to load.
         """
         image = None
         try:
@@ -34,8 +38,9 @@ class ImportExport():
 
     def importGrayscaleImage(self, filename):
         """
-
-        :return: None
+        Given a string filename, attempts to open the file provided in grayscale. If it fails, feedback is through the command line.
+        :param: filename {String}: The name of the file to be opened
+        :return: image {numpyArray}: Either a numpy array of the image, or None due to the image failing to load.
         """
         image = None
         try:
@@ -46,6 +51,13 @@ class ImportExport():
             return image
 
     def exportImage(self, name, image):
+        """
+        Given a filename, and a numpy array of an image, attempts to save the image.
+        If this fails, feedback is through the command line.
+        :param: name {String}: Where the image is meant to be saved
+        :param: image {numpyArray}: An array of the image to be saved
+        :return: {Boolean}: True if the save is successful, False otherwise
+        """
         try:
             cv.imwrite(name, image)
         except Exception:
@@ -55,6 +67,14 @@ class ImportExport():
             return True
 
     def exportChangedImage(self, image):
+        """
+        This method is used when different variation of images are loaded into the application, namely colour and grayscale
+        images, not when the image is saved through the save option.
+        Given a filename, and a numpy array of an image, attempts to save the image.
+        If this fails, feedback is through the command line.
+        :param: image {numpyArray}: An array of the image to be saved
+        :return: {Boolean}: True if the save is successful, False otherwise
+        """
         try:
             cv.imwrite("AlteredImage.jpg", image)
         except Exception:

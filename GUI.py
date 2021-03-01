@@ -6,13 +6,24 @@ import FileMenuController as FMC
 import ImageColour as IC
 
 class FileMenu(Enum):
+    """
+    An enum that keeps track of the options in the file menu of the GUI
+    """
     OPEN = 1
     SAVE = 2
     CLOSE = 3
 
 class GUI(tk.Tk):
+    """
+    The class that holds all information regarding the GUI and its running.
+    """
 
     def __init__(self, *args, **kwargs):
+        """
+        Initialises a tKinter Gui
+        :param args:
+        :param kwargs:
+        """
         tk.Tk.__init__(self, *args, **kwargs)
         self.title("Image Pixelation")
         self.image = None
@@ -25,10 +36,18 @@ class GUI(tk.Tk):
         tk.Tk.config(self, menu=self.menu)
 
     def initCanvas(self):
+        """
+        Creates the canvas from which the image will be shown. Places it on the GUI
+        :return:
+        """
         self.mainCanvas = tk.Canvas(self.mainFrame, bg="white")
         self.mainCanvas.grid(row=0, column=0)
 
     def initMenus(self):
+        """
+        Initialises the menus for the application.
+        :return:
+        """
         #File Menu
         filemenu = tk.Menu(self.menu, tearoff=0)
 
@@ -65,6 +84,10 @@ class GUI(tk.Tk):
             print("That option is currently not handled")
 
     def updateCanvas(self):
+        """
+        Updates the image on the canvas and resizes it to fit the screen of the device being used.
+        :return:
+        """
         image = Image.open(self.filename)
         image = ImageOps.fit(image, (self.winfo_screenwidth(), self.winfo_screenheight()))
         self.canvasImage = ImageTk.PhotoImage(image)
