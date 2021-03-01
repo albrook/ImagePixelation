@@ -54,6 +54,14 @@ class ImportExport():
         finally:
             return True
 
+    def exportChangedImage(self, image):
+        try:
+            cv.imwrite("AlteredImage.jpg", image)
+        except Exception:
+            print("There was an error saving the image")
+            return False
+        finally:
+            return True
 
 
 file = ImportExport()
