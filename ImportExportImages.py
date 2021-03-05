@@ -16,10 +16,19 @@ class ImportExport():
             if screenHeight > i[1] or screenWidth > i[0]:
                 self.width = i[0]
                 self.height = i[1]
-        return (self.width, self.height)
 
     def resizeImage(self, imageToBeResized):
-        return cv.resize(imageToBeResized, (self.width, self.height))
+        correctSize = True
+        scale_factor = 80
+        if self.width < imageToBeResized.shape[1] and self.height < imageToBeResized.shape[0]:
+            correctSize = False
+        while not correctSize:
+            height = int(imageToBeResized.shape[0] * scale_factor / 100)
+            width = int(imageToBeResized.shape[1] * scale_factor / 100)
+            imageToBeResized = cv.resize(imageToBeResized, (width, height))
+            if self.width > len(imageToBeResized[0]) and self.height > len(imageToBeResized):
+                correctSize = True
+        return imageToBeResized
 
     def importUnchangedImage(self, filename):
         """
@@ -96,7 +105,3 @@ class ImportExport():
         finally:
             return True
 
-
-file = ImportExport()
-image = file.importGrayscaleImage("test.jpg")
-file.exportImage("testExport.jpg", image)

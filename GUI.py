@@ -75,7 +75,8 @@ class GUI(tk.Tk):
 
     def invokeFileController(self, option, subOption):
         if option == FileMenu.OPEN:
-            self.imageArray, self.filename, self.imageDimensions = FMC.openImage(subOption, self.winfo_screenwidth(), self.winfo_screenheight())
+            self.imageArray, self.filename = FMC.openImage(subOption, self.winfo_screenwidth(), self.winfo_screenheight())
+            self.imageDimensions = (self.imageArray.shape[1], self.imageArray.shape[0])
             self.updateCanvas()
         elif option == FileMenu.SAVE:
             FMC.saveImage(self.imageArray)

@@ -10,7 +10,7 @@ def openImage(colour, width, height):
     :param colour {ENUM}: An enum depicting how the image will be loaded.
     :return: image, {numpyArray}, filename {String}: An array the describes the image, and the name of the file it is saved in. None if the selected option is not supported.
     """
-    imageDimensions = importExportImages.fitToScreen(width, height)
+    importExportImages.fitToScreen(width, height)
     filename = filedialog.askopenfilename()
     alteredImageFilename = "AlteredImage.jpg"
     if colour == IC.ImageColour.UNCHANGED:
@@ -25,7 +25,7 @@ def openImage(colour, width, height):
 
     importExportImages.exportChangedImage(image)
     image = importExportImages.importUnchangedImage(alteredImageFilename)
-    return image, alteredImageFilename, imageDimensions
+    return image, alteredImageFilename
 
 
 def saveImage(image):
