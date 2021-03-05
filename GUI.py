@@ -28,6 +28,7 @@ class GUI(tk.Tk):
         self.title("Image Pixelation")
         self.image = None
         self.imageArray = None
+        self.imageDimensions = (640, 480)
         self.filename = None
         self.mainFrame = tk.Frame(self).grid(row=0, column=0)
         self.menu = tk.Menu()
@@ -74,7 +75,7 @@ class GUI(tk.Tk):
 
     def invokeFileController(self, option, subOption):
         if option == FileMenu.OPEN:
-            self.imageArray, self.filename = FMC.openImage(subOption)
+            self.imageArray, self.filename, self.imageDimensions = FMC.openImage(subOption, self.winfo_screenwidth(), self.winfo_screenheight())
             self.updateCanvas()
         elif option == FileMenu.SAVE:
             FMC.saveImage(self.imageArray)
@@ -89,10 +90,10 @@ class GUI(tk.Tk):
         :return:
         """
         image = Image.open(self.filename)
-        image = ImageOps.fit(image, (self.winfo_screenwidth(), self.winfo_screenheight()))
         self.canvasImage = ImageTk.PhotoImage(image)
         self.mainCanvas.create_image(0, 0, anchor="nw", image=self.canvasImage)
-        self.mainCanvas.config(width=self.imageArray.shape[1], height=self.imageArray.shape[0])
+        self.mainCanvas.config(width=self.imageDimensions[0], height=self.imageDimensions[1])
+
 
 
 

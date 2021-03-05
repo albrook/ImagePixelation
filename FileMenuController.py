@@ -4,29 +4,29 @@ import ImageColour as IC
 
 importExportImages = IEI.ImportExport()
 
-def openImage(colour):
+def openImage(colour, width, height):
     """
     Given a enum for the type of image to be loaded (Unchanged, RGB, Grayscale) calls the relevant methods in the ImportExportImages script.
     :param colour {ENUM}: An enum depicting how the image will be loaded.
     :return: image, {numpyArray}, filename {String}: An array the describes the image, and the name of the file it is saved in. None if the selected option is not supported.
     """
+    imageDimensions = importExportImages.fitToScreen(width, height)
     filename = filedialog.askopenfilename()
     alteredImageFilename = "AlteredImage.jpg"
     if colour == IC.ImageColour.UNCHANGED:
-        return importExportImages.importUnchangedImage(filename), filename
+        image = importExportImages.importUnchangedImage(filename)
     elif colour == IC.ImageColour.COLOUR:
         image = importExportImages.importColourImage(filename)
-        importExportImages.exportChangedImage(image)
-        image = importExportImages.importUnchangedImage(alteredImageFilename)
-        return image, alteredImageFilename
     elif colour == IC.ImageColour.GRAYSCALE:
         image = importExportImages.importGrayscaleImage(filename)
-        importExportImages.exportChangedImage(image)
-        image = importExportImages.importUnchangedImage(alteredImageFilename)
-        return image, alteredImageFilename
     else:
         print("The option you selected is not currently supported")
         return None, None
+
+    importExportImages.exportChangedImage(image)
+    image = importExportImages.importUnchangedImage(alteredImageFilename)
+    return image, alteredImageFilename, imageDimensions
+
 
 def saveImage(image):
     """

@@ -7,6 +7,19 @@ class ImportExport():
     Options for opening include opening the image as it is, in colour (RGB) format, and in grayscale.
     There is only one option for saving, as is.
     """
+    def __init__(self):
+        self.resolutions = [(640, 480), (1280, 720), (1920, 1080)]
+        self.width, self.height = 640, 480
+
+    def fitToScreen(self, screenWidth, screenHeight):
+        for i in self.resolutions:
+            if screenHeight > i[1] or screenWidth > i[0]:
+                self.width = i[0]
+                self.height = i[1]
+        return (self.width, self.height)
+
+    def resizeImage(self, imageToBeResized):
+        return cv.resize(imageToBeResized, (self.width, self.height))
 
     def importUnchangedImage(self, filename):
         """
@@ -20,7 +33,7 @@ class ImportExport():
         except(AttributeError, SystemError):
             print("Failed to import selected file")
         finally:
-            return image
+            return self.resizeImage(image)
 
     def importColourImage(self, filename):
         """
@@ -34,7 +47,7 @@ class ImportExport():
         except(AttributeError, SystemError):
             print("Failed to import selected file")
         finally:
-            return image
+            return self.resizeImage(image)
 
     def importGrayscaleImage(self, filename):
         """
@@ -48,7 +61,7 @@ class ImportExport():
         except(AttributeError, SystemError):
             print("Failed to import selected file")
         finally:
-            return image
+            return self.resizeImage(image)
 
     def exportImage(self, name, image):
         """
