@@ -1,5 +1,7 @@
 import cv2 as cv
-from tkinter import filedialog
+import Globals
+
+GLOBALS = Globals.Globals()
 
 class ImportExport():
     """
@@ -98,7 +100,7 @@ class ImportExport():
         :return: {Boolean}: True if the save is successful, False otherwise
         """
         try:
-            cv.imwrite("AlteredImage.jpg", image)
+            cv.imwrite(GLOBALS.localSaveFilename, image)
         except Exception:
             print("There was an error saving the image")
             return False

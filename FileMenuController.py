@@ -1,8 +1,10 @@
 from tkinter import filedialog
 import ImportExportImages as IEI
 import ImageColour as IC
+import Globals
 
 importExportImages = IEI.ImportExport()
+GLOBALS = Globals.Globals()
 
 def openImage(colour, width, height):
     """
@@ -12,7 +14,7 @@ def openImage(colour, width, height):
     """
     importExportImages.fitToScreen(width, height)
     filename = filedialog.askopenfilename()
-    alteredImageFilename = "AlteredImage.jpg"
+    alteredImageFilename = GLOBALS.localSaveFilename
     if colour == IC.ImageColour.UNCHANGED:
         image = importExportImages.importUnchangedImage(filename)
     elif colour == IC.ImageColour.COLOUR:

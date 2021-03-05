@@ -3,7 +3,9 @@ from PIL import ImageTk,Image, ImageOps
 from enum import Enum
 
 import FileMenuController as FMC
+import AlgorithmController as AC
 import ImageColour as IC
+import Algorithm as ALG
 
 class FileMenu(Enum):
     """
@@ -65,7 +67,8 @@ class GUI(tk.Tk):
 
         #Algorithm Menu
         algorithmMenu = tk.Menu(self.menu, tearoff=0)
-        algorithmMenu.add_command(label="Pixelate", command=lambda:None)
+        algorithmMenu.add_command(label="Pixelate", command=lambda:self.invokeAlgorithm(ALG.Algorithm.PIXELATE))
+        algorithmMenu.add_command(label="Binary Threshold", command=lambda: self.invokeAlgorithm(ALG.Algorithm.BINARY_THRESHOLD))
         self.menu.add_cascade(label="Algorithms", menu=algorithmMenu)
 
         #Resize Menu
@@ -84,6 +87,16 @@ class GUI(tk.Tk):
             tk.Tk.destroy(self)
         else:
             print("That option is currently not handled")
+
+    def invokeAlgorithm(self, option):
+        if option == ALG.Algorithm.PIXELATE:
+            self.imageArray, self.filename = AC.callPixelateAlgorithm(self.filename)
+        elif option == ALG.Algorithm.BINARY_THRESHOLD:
+            self.imageArray, self.filename = AC.callBinaryThresholdAlgorithm(self.filename)
+        else:
+            print("That option is currently not handled")
+        self.imageDimensions = (self.imageArray.shape[1], self.imageArray.shape[0])
+        self.updateCanvas()
 
     def updateCanvas(self):
         """
