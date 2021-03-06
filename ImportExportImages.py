@@ -1,8 +1,6 @@
 import cv2 as cv
 import Globals
 
-GLOBALS = Globals.Globals()
-
 class ImportExport():
     """
     This class holds methods related to the importing (opening) and exporting (saving) of images.
@@ -100,7 +98,7 @@ class ImportExport():
         :return: {Boolean}: True if the save is successful, False otherwise
         """
         try:
-            cv.imwrite(GLOBALS.localSaveFilename, image)
+            cv.imwrite(Globals.localSaveFilename, image)
         except Exception:
             print("There was an error saving the image")
             return False

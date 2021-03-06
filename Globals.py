@@ -1,6 +1,5 @@
-from enum import Enum
 
-class Globals():
+pixelationWindowPixels = 7 #Always an odd number
+localSaveFilename = "AlteredImage.jpg"
 
-    def __init__(self):
-        self.localSaveFilename = "AlteredImage.jpg"
+

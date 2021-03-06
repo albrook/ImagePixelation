@@ -4,7 +4,6 @@ import ImageColour as IC
 import Globals
 
 importExportImages = IEI.ImportExport()
-GLOBALS = Globals.Globals()
 
 def openImage(colour, width, height):
     """
@@ -14,7 +13,7 @@ def openImage(colour, width, height):
     """
     importExportImages.fitToScreen(width, height)
     filename = filedialog.askopenfilename()
-    alteredImageFilename = GLOBALS.localSaveFilename
+    alteredImageFilename = Globals.localSaveFilename
     if colour == IC.ImageColour.UNCHANGED:
         image = importExportImages.importUnchangedImage(filename)
     elif colour == IC.ImageColour.COLOUR:

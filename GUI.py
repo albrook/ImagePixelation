@@ -6,6 +6,9 @@ import FileMenuController as FMC
 import AlgorithmController as AC
 import ImageColour as IC
 import Algorithm as ALG
+import Globals
+
+
 
 class FileMenu(Enum):
     """
@@ -107,7 +110,7 @@ class GUI(tk.Tk):
         self.canvasImage = ImageTk.PhotoImage(image)
         self.mainCanvas.create_image(0, 0, anchor="nw", image=self.canvasImage)
         self.mainCanvas.config(width=self.imageDimensions[0], height=self.imageDimensions[1])
-
+        print(Globals.pixelationWindowPixels)
 
 
 
