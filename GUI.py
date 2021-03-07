@@ -79,6 +79,19 @@ class GUI(tk.Tk):
         resizeMenu.add_command(label="Resize image", command=lambda:None)
         self.menu.add_cascade(label="Resize", menu=resizeMenu)
 
+        #Settings Menu
+        settingsMenu = tk.Menu(self.menu, tearoff=0)
+        pixelateMenu = tk.Menu(settingsMenu, tearoff=0)
+        pixelateMenu.add_command(label="3", command=lambda:self.changePixelationLevel(3))
+        pixelateMenu.add_command(label="5", command=lambda: self.changePixelationLevel(5))
+        pixelateMenu.add_command(label="7", command=lambda: self.changePixelationLevel(7))
+        pixelateMenu.add_command(label="9", command=lambda: self.changePixelationLevel(9))
+        pixelateMenu.add_command(label="11", command=lambda: self.changePixelationLevel(11))
+        pixelateMenu.add_command(label="13", command=lambda: self.changePixelationLevel(13))
+        pixelateMenu.add_command(label="15", command=lambda: self.changePixelationLevel(15))
+        settingsMenu.add_cascade(label="Pixelation", menu=pixelateMenu)
+        self.menu.add_cascade(label="Settings", menu=settingsMenu)
+
     def invokeFileController(self, option, subOption):
         if option == FileMenu.OPEN:
             self.imageArray, self.filename = FMC.openImage(subOption, self.winfo_screenwidth(), self.winfo_screenheight())
@@ -111,6 +124,9 @@ class GUI(tk.Tk):
         self.mainCanvas.create_image(0, 0, anchor="nw", image=self.canvasImage)
         self.mainCanvas.config(width=self.imageDimensions[0], height=self.imageDimensions[1])
         print(Globals.pixelationWindowPixels)
+
+    def changePixelationLevel(self, windowSize):
+        Globals.pixelationWindowPixels = windowSize
 
 
 

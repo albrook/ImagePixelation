@@ -7,10 +7,11 @@ While this repository uses similar libraries, it has a different focus.
 - Language: Python v3.6
 
 **Packages Required**
-- Pillow
+- Pillow (PIL)
 - opencv-python
 - tkinter 
 - numpy
+
 
 
 
