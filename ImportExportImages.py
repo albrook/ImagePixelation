@@ -1,3 +1,10 @@
+"""
+A script that contains all methods to importing and export images that are required by GUI.py
+
+Author: Alan Brook
+Date: March 2021
+"""
+
 import cv2 as cv
 import Globals
 
@@ -12,12 +19,24 @@ class ImportExport():
         self.width, self.height = 640, 480
 
     def fitToScreen(self, screenWidth, screenHeight):
+        """
+        Given the screen width and height of the device the program is being run on, sets class variables accordingly.
+        :param screenWidth (int): The width of the devices screen
+        :param screenHeight (int): The height of the devices screen
+        :return:
+        """
         for i in self.resolutions:
             if screenHeight > i[1] or screenWidth > i[0]:
                 self.width = i[0]
                 self.height = i[1]
 
     def resizeImage(self, imageToBeResized):
+        """
+        Given a list that contains the information of an image, resizes the image to fit within the bounds set by the
+        class variables self.width and self.height
+        :param imageToBeResized (List): A list containing all of the information on the image to be resized.
+        :return:
+        """
         correctSize = True
         scale_factor = 80
         if self.width < imageToBeResized.shape[1] and self.height < imageToBeResized.shape[0]:

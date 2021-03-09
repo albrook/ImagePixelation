@@ -1,3 +1,11 @@
+"""
+A script that is used as a controller for the script GUI.py
+This script primarily focuses on the file tab in GUI.py, and hence contains methods for opening an image and saving an image.
+
+Author: Alan Brook
+Date: March 2021
+"""
+
 from tkinter import filedialog
 import ImportExportImages as IEI
 import ImageColour as IC

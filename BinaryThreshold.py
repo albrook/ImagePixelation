@@ -1,3 +1,11 @@
+"""
+A script that contains code for the running of a binary thresholding algorithm.
+The algorithm is provided by the open-cv library.
+
+Author: Alan Brook
+Date: March 2021
+"""
+
 import cv2 as cv
 
 def binary_threshold(filename):

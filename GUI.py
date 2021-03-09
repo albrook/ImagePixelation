@@ -1,5 +1,15 @@
+"""
+The main script for the repository https://github.com/albrook/PixelationAlgorithm.
+This scripts runs the GUI for the application.
+An attempt has been made to follow MVC, where this script is the view and all commands are passed onto relevant
+controllers.
+
+Author: Alan Brook
+Date: March 2021
+"""
+
 import tkinter as tk
-from PIL import ImageTk,Image, ImageOps
+from PIL import ImageTk,Image
 from enum import Enum
 
 import FileMenuController as FMC
@@ -93,6 +103,12 @@ class GUI(tk.Tk):
         self.menu.add_cascade(label="Settings", menu=settingsMenu)
 
     def invokeFileController(self, option, subOption):
+        """
+        Given a certain option, passes details to the required controller (FilenMenuController) for the selected option and suboption
+        :param option (FileMenu): An Enum object that describes which menu item was selected.
+        :param subOption (ImageColour): An Enum object that describes the colour of the image to be loaded
+        :return:
+        """
         if option == FileMenu.OPEN:
             self.imageArray, self.filename = FMC.openImage(subOption, self.winfo_screenwidth(), self.winfo_screenheight())
             self.imageDimensions = (self.imageArray.shape[1], self.imageArray.shape[0])
@@ -105,6 +121,11 @@ class GUI(tk.Tk):
             print("That option is currently not handled")
 
     def invokeAlgorithm(self, option):
+        """
+        Given a certain option, passes details to the required controller (AlgorithmController) for the selected option.
+        :param option (Algorithm): An Enum object that describes the algorithm to be used
+        :return:
+        """
         if option == ALG.Algorithm.PIXELATE:
             self.imageArray, self.filename = AC.callPixelateAlgorithm(self.filename)
         elif option == ALG.Algorithm.BINARY_THRESHOLD:

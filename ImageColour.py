@@ -1,3 +1,10 @@
+"""
+A script that contains an Enum. The Enum describes different ImageColours that can be loaded by GUI.py
+
+Author: Alan Brook
+Date: March 2021
+"""
+
 from enum import Enum
 
 class ImageColour(Enum):
