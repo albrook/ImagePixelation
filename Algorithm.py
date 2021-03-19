@@ -13,3 +13,4 @@ class Algorithm(Enum):
     """
     PIXELATE = 1
     BINARY_THRESHOLD = 2
+    PIXELATE_AND_SHRINK = 3

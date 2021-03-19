@@ -16,12 +16,23 @@ importExportImages = IEI.ImportExport()
 
 def callPixelateAlgorithm(filename):
     """
-    Given a filename, passes the filename onto the relevant algorithm (PixelationAlgorithm.py), saves the transformed image and
+    Given a filename, passes the filename onto the relevant algorithm from PixelationAlgorithm.py (pixelation) saves the transformed image and
     returns the transformed image and the local save of the transformed image.
     :param filename (String): The directory of the image ot be transformed
     :return (List, String): The transformed image, and the directory of the local save file.
     """
-    transformedImage = PA.Pixelation(filename)
+    transformedImage = PA.pixelation(filename)
+    importExportImages.exportChangedImage(transformedImage)
+    return transformedImage, Globals.localSaveFilename
+
+def callPixelateAndShrinkAlgorithm(filename):
+    """
+    Given a filename, passes the filename onto the relevant algorithm from PixelationAlgorithm.py (pixelateAndShrink), saves the transformed image and
+    returns the transformed image and the local save of the transformed image.
+    :param filename (String): The directory of the image ot be transformed
+    :return (List, String): The transformed image, and the directory of the local save file.
+    """
+    transformedImage = PA.pixelateAndShrink(filename)
     importExportImages.exportChangedImage(transformedImage)
     return transformedImage, Globals.localSaveFilename
 

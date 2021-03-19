@@ -81,6 +81,7 @@ class GUI(tk.Tk):
         #Algorithm Menu
         algorithmMenu = tk.Menu(self.menu, tearoff=0)
         algorithmMenu.add_command(label="Pixelate", command=lambda:self.invokeAlgorithm(ALG.Algorithm.PIXELATE))
+        algorithmMenu.add_command(label="Pixelate and Shrink", command=lambda: self.invokeAlgorithm(ALG.Algorithm.PIXELATE_AND_SHRINK))
         algorithmMenu.add_command(label="Binary Threshold", command=lambda: self.invokeAlgorithm(ALG.Algorithm.BINARY_THRESHOLD))
         self.menu.add_cascade(label="Algorithms", menu=algorithmMenu)
 
@@ -128,6 +129,8 @@ class GUI(tk.Tk):
         """
         if option == ALG.Algorithm.PIXELATE:
             self.imageArray, self.filename = AC.callPixelateAlgorithm(self.filename)
+        elif option == ALG.Algorithm.PIXELATE_AND_SHRINK:
+            self.imageArray, self.filename = AC.callPixelateAndShrinkAlgorithm(self.filename)
         elif option == ALG.Algorithm.BINARY_THRESHOLD:
             self.imageArray, self.filename = AC.callBinaryThresholdAlgorithm(self.filename)
         else:
